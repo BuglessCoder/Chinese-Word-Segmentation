@@ -40,29 +40,25 @@ public class SplitWords {
 	public static List<String> maximumMatching(String text){		
 		//result存储分词后的结果
 		List<String> result = new ArrayList<>();
-		while(text.length()>0){		
-	        int len=MAX_LENGTH; 
+		while(text.length() > 0){		
+	        int len = MAX_LENGTH; 
 	        
 	        //如果待切分字符串的长度小于词典中的最大词长，则令最大词长等于待切分字符串的长度
-	        if(text.length()<len){
+	        if(text.length() < len){
 	            len=text.length();  
 	        } 
 	        
 	        //取指定的最大长度的文本去词典里面匹配  
 	        String tryWord = text.substring(0, 0+len); 
-	        int flag = 0;
 	        while(!DICT.contains(tryWord)){  	        	
 	        	//如果长度已经减为一且在词典中仍未找到匹配，则按长度为一切分  
 	            if(tryWord.length() == 1){  
-	            	flag = 1;
 	                break;  
 	            }         	
 	        	//如果匹配不到，则长度减一继续匹配  
 	            tryWord = tryWord.substring(0, tryWord.length()-1);               	            
 	        }
-	        if(flag == 0){
-	        	result.add(tryWord);
-	        }	        
+	        result.add(tryWord);	        
 	        //从待切分字符串中去除已经分词完的部分
 	        text = text.substring(tryWord.length());  
 	    }  
